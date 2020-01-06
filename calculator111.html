@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+body{
+    margin: 0;
+    padding:0;
+    }
+.main3{
+    position: absolute;
+    display: fixed;
+    border-radius: 5px;
+    /* border: 5px solid green; */
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    width: 360px;
+    height: 360px;
+    top: 50%;
+    left: 50%;
+    padding:5px;
+    transform: translateX(-50%)translateY(-50%);
+    background-color:gray;
+}
+input{
+    color:green;
+    width: 22%;
+    height: 60px;
+    font-size: 15px;
+    margin: 3px;
+    border-radius: 5px;
+    border-color:blue;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.30);
+}
+#pp{
+    /* max-height: 50px;
+    max-width: 150px; */
+    height: 80px;
+    width: 95%;
+    margin: 3px;
+    font-size: 25px;
+    /* resize: none; */
+
+}
+</style>
+<body>
+    <css-doodle>
+        :doodle{
+            @grid: 30x15 / 100vmax ;
+            gap:1vmin;
+            background:black;
+            opacity:.7;
+           
+        }
+        opacity:@r(.9);
+        border-width:@r(20px);
+        border-color:@p(deeppink,green,blue);
+        border-top-style:@p(dashed,solid,dotted,double);
+        
+        
+    </css-doodle>
+            
+    <div  class="main3">
+        <form name="main">
+            <input type="text" name="result" id="pp" maxlength="10"></input><br>
+            <!-- <textarea name="result" id="pp" cols="3" rows="10"></textarea><br> -->
+            <input type="button" value="1" onclick="main.result.value+=1;doodle()">
+            <input type="button" value="2" onclick="main.result.value+=2;doodle()">
+            <input type="button" value="3" onclick="main.result.value+=3;doodle()">
+            <input type="button" value="+" onclick="add();doodle()">
+            <br>
+            <input type="button" value="4" onclick="main.result.value+=4;doodle()">
+            <input type="button" value="5" onclick="main.result.value+=5;doodle()">
+            <input type="button" value="6" onclick="main.result.value+=6;doodle()">
+            <input type="button" value="-" onclick="minus();doodle()">
+            <br>
+            <input type="button" value="7" onclick="main.result.value+=7;doodle()">
+            <input type="button" value="8" onclick="main.result.value+=8;doodle()">
+            <input type="button" value="9" onclick="main.result.value+=9;doodle()">
+            <input type="button" value="&#247" onclick="div();doodle()">
+            <br>
+            <input type="button" value="c" onclick="main.result.value='';doodle()">
+            <input type="button" value="0" onclick="main.result.value+=0;doodle()">
+            <input type="button" value="=" onclick="main.result.value=eval(result.value)">
+            <input type="button" value="x" onclick="mul();doodle()">
+            <br>
+            <!-- <input type="button" value="<" onclick=""> -->
+        </form>
+    </div>
+    <script>
+        function add(){
+            let act=0, symbol=0;
+            act = main.result.value;
+            symbol = act.charAt(act.length-1);
+            if(symbol=='+' || symbol=='-' || symbol=='*'|| symbol=='/'){
+                //判斷更換按鈕
+                main.result.value=act.substring(0,act.length-1);
+                main.result.value+='+';
+            }else{
+                //執行加法
+                main.result.value+='+';
+            }
+        }
+        function minus(){
+            let act=0, symbol=0;
+            act = main.result.value;
+            symbol = act.charAt(act.length-1);
+            if(symbol=='+' || symbol=='-' || symbol=='*'|| symbol=='/'){
+                main.result.value=act.substring(0,act.length-1);
+                main.result.value+='-';
+            }else{
+                
+                main.result.value+='-';
+            }
+        }
+        function div(){
+            let act=0,symbol=0;
+            act = main.result.value;
+            symbol = act.charAt(act.length-1);
+            if(symbol=='+' || symbol=='-' || symbol=='*' || symbol=='/'){
+                main.result.value=act.substring(0,act.length-1);
+                main.result.value+='/';
+            }else{
+                main.result.value+='/'; 
+            }
+        }
+        function mul(){
+            let act=0,symbol=0;
+            act = main.result.value;
+            symbol = act.charAt(act.length-1);
+            if(symbol=='+' || symbol=='-' || symbol=='*' || symbol=='/'){
+                main.result.value=act.substring(0,act.length-1);
+                main.result.value+='*';
+            }else{
+                main.result.value+='*';
+            }
+        }
+    
+    function doodle(){
+    const doodle = document.querySelector('css-doodle');
+    // input.onclick = function(){
+        doodle.update();
+    }
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.6.1/css-doodle.min.js"></script>
+
+</body>
+</html>
